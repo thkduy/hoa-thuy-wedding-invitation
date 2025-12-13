@@ -2275,9 +2275,12 @@
     #HEADLINE15,
     #HEADLINE67,
     #HEADLINE103,
-    #HEADLINE84,
-    #HEADLINE95 {
+    #HEADLINE84 {
       width: 200px;
+    }
+
+    #HEADLINE95 {
+      width: 250px;
     }
 
     #HEADLINE11 {
@@ -3903,10 +3906,10 @@
     }
 
     #BOX39>.ladi-box {
-      background-image: url("https://w.ladicdn.com/s550x500/6322a62f2dad980013bb5005/2222-20240330073515-wagdo.jpg");
+      background-image: url("./assets/image-16.jpg");
       background-size: cover;
       background-origin: content-box;
-      background-position: 50% 0%;
+      background-position: 50% 50%;
       background-repeat: repeat;
       background-attachment: scroll;
     }
@@ -3944,7 +3947,7 @@
     }
 
     #IMAGE6>.ladi-image>.ladi-image-background {
-      background-image: url("https://w.ladicdn.com/s450x450/6322a62f2dad980013bb5005/screenshot_1763309137-20251116160544-zqlfc.png");
+      background-image: url("./assets/qr.jpg");
     }
 
     #HEADLINE93 {
@@ -4121,27 +4124,10 @@
     const iconOn = document.getElementById("icon-on");
     const iconOff = document.getElementById("icon-off");
 
-    function updateIcon() {
-      if (isPlaying) {
-        iconOn.style.display = "block";
-        iconOff.style.display = "none";
-        toggleBtn.classList.add("playing");
-        toggleBtn.setAttribute("aria-pressed", "true");
-        toggleBtn.setAttribute("title", "Tắt nhạc");
-      } else {
-        iconOn.style.display = "none";
-        iconOff.style.display = "block";
-        toggleBtn.classList.remove("playing");
-        toggleBtn.setAttribute("aria-pressed", "false");
-        toggleBtn.setAttribute("title", "Bật nhạc");
-      }
-    }
-
     function safePlay() {
       return audio.play().then(() => {
         musicStarted = true;
         isPlaying = true;
-        updateIcon();
       }).catch(err => {
         console.debug("Audio play blocked or failed:", err);
         throw err;
@@ -4151,7 +4137,6 @@
     function pauseMusic() {
       audio.pause();
       isPlaying = false;
-      updateIcon();
     }
 
     audio.addEventListener("ended", function () {
@@ -4159,10 +4144,8 @@
       audio.src = musicList[index];
       audio.play().then(() => {
         isPlaying = true;
-        updateIcon();
       }).catch(() => {
         isPlaying = false;
-        updateIcon();
       });
     });
 
@@ -4180,33 +4163,7 @@
     document.addEventListener("mousedown", startMusicOnFirstGesture, { once: true });
     document.addEventListener("wheel", startMusicOnFirstGesture, { once: true });
 
-    // -------------------
-    // Toggle button
-    // -------------------
-    toggleBtn.addEventListener("click", function (ev) {
-      ev.preventDefault();
-
-      if (!musicStarted) {
-        safePlay().catch(() => { isPlaying = false; updateIcon(); });
-        return;
-      }
-
-      if (isPlaying) {
-        pauseMusic();
-      } else {
-        safePlay().catch(() => { isPlaying = false; updateIcon(); });
-      }
-    });
-
     isPlaying = false;
-    updateIcon();
-
-    toggleBtn.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleBtn.click();
-      }
-    });
   </script>
 </head>
 
@@ -4666,7 +4623,7 @@
               <div class='ladi-button ladi-transition'>
                 <div class="ladi-button-background"></div>
                 <div id="BUTTON_TEXT4" class='ladi-element ladi-button-headline'>
-                  <p class='ladi-headline ladi-transition'>GỬI LỜI NHẮN &amp; xác nhận</p>
+                  <p id="buttonText" class='ladi-headline ladi-transition'>GỬI LỜI NHẮN &amp; xác nhận</p>
                 </div>
               </div>
             </div>
@@ -4772,16 +4729,16 @@
               </div>
             </div>
             <div id="HEADLINE93" class='ladi-element'>
-              <p class='ladi-headline ladi-transition'>chú rể<br></p>
+              <p class='ladi-headline ladi-transition'>Cô dâu<br></p>
             </div>
             <div id="HEADLINE95" class='ladi-element'>
-              <p class='ladi-headline ladi-transition'>Vũ Đức Mạnh</p>
+              <p class='ladi-headline ladi-transition'>Phạm Thị Thanh Thuỷ</p>
             </div>
             <div id="HEADLINE97" class='ladi-element'>
-              <p class='ladi-headline ladi-transition'>MB Bank<br></p>
+              <p class='ladi-headline ladi-transition'>VPBank<br></p>
             </div>
             <div id="HEADLINE98" class='ladi-element'>
-              <p class='ladi-headline ladi-transition'>2520104966005<br></p>
+              <p class='ladi-headline ladi-transition'>6924022017<br></p>
             </div>
           </div>
         </div>
@@ -5303,50 +5260,6 @@
     type="application/json">{"HEADLINE4":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE5":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE6":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"BOX1":{"a":"box","D":"fadeInLeft","A":"1s"},"HEADLINE7":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE8":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE9":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"BOX2":{"a":"box","D":"fadeInRight","A":"1s"},"HEADLINE10":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE11":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE12":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE13":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"HEADLINE14":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"0s"},"BOX3":{"a":"box","D":"fadeInUp","A":"1s"},"BOX4":{"a":"box","D":"fadeInLeft","A":"1s"},"BOX6":{"a":"box","D":"fadeInRight","A":"1s"},"HEADLINE15":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"pulse","A":"1s"},"HEADLINE16":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE17":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE18":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE19":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE20":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE21":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE22":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE25":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE26":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE27":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE28":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE29":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE30":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE31":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE32":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE33":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE34":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE35":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE36":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE37":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE38":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE39":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE40":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE41":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE42":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE43":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE44":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE45":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE46":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE47":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE48":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE49":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE50":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE51":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE52":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE58":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE59":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE60":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE61":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE62":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE63":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE64":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE65":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE66":{"option.is_product_mapping_name_custom":true,"a":"headline"},"GROUP7":{"a":"group","cs":[{"dr":"action","dv":"_blank","dw":"https://maps.app.goo.gl/KZbgpc2dF8JoTMhF8","a":"link"}],"D":"pulse","A":"0s"},"HEADLINE67":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE68":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE69":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE70":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE71":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE72":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE73":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE74":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE75":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE76":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE77":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"pulse","A":"0s"},"BOX9":{"a":"box","D":"bounceIn","A":"0s"},"BOX10":{"a":"box","D":"bounceIn","A":"0s"},"HEADLINE78":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE79":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"bounceInLeft","A":"0s"},"LINE8":{"a":"line","D":"bounceInRight","A":"0s"},"BOX13":{"a":"box","D":"flipInY","A":"1s"},"BOX14":{"a":"box","D":"flipInY","A":"1s"},"HEADLINE80":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE81":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"BOX15":{"a":"box","D":"fadeInRight","A":"1s"},"BOX16":{"a":"box","D":"fadeInLeft","A":"1s"},"BOX17":{"a":"box","D":"fadeInLeft","A":"0s"},"BOX19":{"a":"box","D":"fadeInRight","A":"1s"},"BOX20":{"a":"box","D":"fadeInLeft","A":"1s"},"BOX21":{"a":"box","D":"fadeInRight","A":"1s"},"BOX22":{"a":"box","D":"fadeInLeft","A":"1s"},"BOX23":{"a":"box","D":"fadeInRight","A":"1s"},"BOX24":{"a":"box","D":"fadeInLeft","A":"1s"},"BOX28":{"a":"box","D":"rollIn","A":"1s"},"HEADLINE82":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE84":{"option.is_product_mapping_name_custom":true,"a":"headline"},"GROUP15":{"a":"group","cs":[{"dr":"action","dw":"POPUP4","a":"popup"}],"D":"fadeInUp","A":"1s"},"HEADLINE85":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInUp","A":"1s"},"HEADLINE86":{"option.is_product_mapping_name_custom":true,"a":"headline"},"COUNTDOWN1":{"a":"countdown","bX":"endtime","bT":1766973600000},"COUNTDOWN_ITEM1":{"a":"countdown_item","bY":"day"},"COUNTDOWN_ITEM2":{"a":"countdown_item","bY":"hour"},"COUNTDOWN_ITEM3":{"a":"countdown_item","bY":"minute"},"COUNTDOWN_ITEM4":{"a":"countdown_item","bY":"seconds"},"HEADLINE87":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE88":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE89":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE90":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"flip","A":"1s"},"GROUP17":{"a":"group","D":"fadeInUp","A":"0s"},"GROUP18":{"a":"group","D":"fadeInUp","A":"0s"},"GROUP19":{"a":"group","D":"fadeInUp","A":"0s"},"GROUP20":{"a":"group","D":"fadeInUp","A":"0s"},"POPUP2":{"a":"popup","X":"default","U":"background-color: rgba(0, 0, 0, 0.5);"},"HEADLINE91":{"option.is_product_mapping_name_custom":true,"a":"headline"},"POPUP4":{"a":"popup","X":"default","U":"background-color: rgba(0, 0, 0, 0.5);"},"HEADLINE92":{"option.is_product_mapping_name_custom":true,"a":"headline"},"IMAGE6":{"a":"image","D":"fadeInLeft","A":"0s"},"HEADLINE93":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInRight","A":"0s"},"HEADLINE95":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInRight","A":"0s"},"HEADLINE97":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInRight","A":"0s"},"HEADLINE98":{"option.is_product_mapping_name_custom":true,"a":"headline","D":"fadeInRight","A":"0s"},"HEADLINE99":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE100":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE101":{"option.is_product_mapping_name_custom":true,"a":"headline"},"HEADLINE102":{"option.is_product_mapping_name_custom":true,"a":"headline"},"IMAGE9":{"a":"image","D":"shake","A":"0s"},"HEADLINE103":{"option.is_product_mapping_name_custom":true,"a":"headline","cs":[{"dr":"action","dv":"_blank","dw":"https://camcui.vn/ducmanhalbum","a":"link"}],"D":"pulse","A":"1s"},"GROUP25":{"a":"group","D":"fadeInUp","A":"1s"},"IMAGE11":{"a":"image","aB":true,"ax":"top_right","au":"7px","ar":"0px","ao":"0px","al":"7px","D":"pulse","A":"0s"},"BUTTON_TEXT4":{"option.is_product_mapping_name_custom":true,"a":"headline"},"BUTTON4":{"a":"button","F":"fadeInUp","C":"1s"},"FORM_ITEM11":{"a":"form_item","bS":"text","bQ":1},"FORM_ITEM12":{"a":"form_item","bS":"textarea","bQ":4},"FORM_ITEM13":{"a":"form_item","bS":"select","bQ":3},"FORM_ITEM14":{"a":"form_item","bS":"select","bQ":4},"FORM_ITEM15":{"a":"form_item","bS":"select","bQ":5},"duy-ninh":{"option.dynamic_form_config":"&#123;&#34;configs&#34;:[],&#34;default_actions&#34;:[&#123;&#34;text_thankyou_value&#34;:&#34;Cảm ơn bạn đã quan tâm!&#34;,&#34;type&#34;:&#34;form_open_popup&#34;,&#34;no_delete&#34;:true,&#34;id_open_popup&#34;:&#34;POPUP1&#34;&#125;]&#125;","a":"form","bP":"6908f4b929c90a002d66e0e7","bM":true,"by":true,"bx":true,"F":"fadeInUp","C":"1s"}}</script>
   <script id="script_ladipage_run"
     type="text/javascript">(function () { var run = function () { if (typeof window.LadiPageScript == "undefined" || typeof window.ladi == "undefined" || window.ladi == undefined) { setTimeout(run, 100); return; } window.LadiPageApp = window.LadiPageApp || new window.LadiPageAppV2(); window.LadiPageScript.runtime.ladipage_id = '6607958ef579bf001241f268'; window.LadiPageScript.runtime.publish_platform = 'WORDPRESS'; window.LadiPageScript.runtime.is_mobile_only = true; window.LadiPageScript.runtime.version = '1764757910643'; window.LadiPageScript.runtime.cdn_url = 'https://w.ladicdn.com/v5/source/'; window.LadiPageScript.runtime.DOMAIN_SET_COOKIE = ["camcui.vn"]; window.LadiPageScript.runtime.DOMAIN_FREE = ["preview.ldpdemo.com", "ldp.page"]; window.LadiPageScript.runtime.bodyFontSize = 12; window.LadiPageScript.runtime.store_id = "6322a62f2dad980013bb5005"; window.LadiPageScript.runtime.store_ladiuid = "6322a612c96988001223c73b"; window.LadiPageScript.runtime.time_zone = 7; window.LadiPageScript.runtime.currency = "VND"; window.LadiPageScript.runtime.convert_replace_str = true; window.LadiPageScript.runtime.desktop_width = 960; window.LadiPageScript.runtime.mobile_width = 420; window.LadiPageScript.runtime.formdata = true; window.LadiPageScript.runtime.tracking_button_click = true; window.LadiPageScript.runtime.publish_time = 1794987398230; window.LadiPageScript.runtime.lang = "vi"; window.LadiPageScript.run(true); window.LadiPageScript.runEventScroll(); }; run(); })();</script>
-  <!-- <script>
-    const form = document.getElementById('duy-ninh');
-    const submitDiv = document.getElementById('BUTTON2');
-
-    let isSubmitting = false;
-
-    submitDiv.addEventListener('click', function () {
-      if (isSubmitting) return; // prevent double submission
-
-      isSubmitting = true;
-      submitDiv.innerHTML = "Đang gửi...";
-      submitDiv.classList.add("disabled");
-
-      const formData = new FormData();
-      formData.append("name", document.getElementById('name').value);
-      formData.append("message", document.getElementById('message').value);
-      formData.append("attendance", document.getElementById('attendance').value);
-      formData.append("withWhom", document.getElementById('withWhom').value);
-      formData.append("guestOf", document.getElementById('guestOf').value);
-
-      fetch("https://script.google.com/macros/s/AKfycbyiE16SXZId-Gbx0mYAyL1TaDraEmA1XW9IdWRNI0cTxNa--c8gBysWitwLii1GigssMw/exec", {
-        method: "POST",
-        body: formData
-      })
-        .then(res => res.json())
-        .then(response => {
-          console.log("Form submitted:", response);
-          submitDiv.innerHTML = "Cảm ơn bạn đã gửi thông tin!";
-        })
-        .catch(error => {
-          console.error("Error!", error.message);
-          submitDiv.innerHTML = `<div class='ladi-button ladi-transition'>
-                  <div class="ladi-button-background"></div>
-                  <div id="BUTTON_TEXT2" class='ladi-element ladi-button-headline'>
-                    <p class='ladi-headline ladi-transition'>GỬI LỜI NHẮN &amp; xác nhận</p>
-                  </div>
-                </div>`;
-          submitDiv.classList.remove("disabled");
-        })
-        .finally(() => {
-          isSubmitting = false;
-        });
-    });
-  </script> -->
   </body>
 
 </html><!--Publish time: Wed, 03 Dec 2025 18:43:18 GMT--><!--LadiPage build time: Wed, 03 Dec 2025 10:31:50 GMT-->

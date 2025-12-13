@@ -12058,6 +12058,52 @@ LadiPageScript.const.URL_LADI_PAYMENT = function() {
     return "https://w.ladicdn.com/v5/ladiui/ladipage/ladi-payment.html"
 }
 ;
+LadiPageScript.runtime.send_request_response = LadiPageScript.runtime.send_request_response || {};
+LadiPageScript.runtime.send_request_response[LadiPageScript.const.API_FORM_DATA] = function(url, data, callback) {
+    try {
+        var jsonData = JSON.parse(data);
+        if (jsonData.form_data && Array.isArray(jsonData.form_data)) {
+            var formData = new FormData();
+            jsonData.form_data.forEach(function(item) {
+                if (item.name === 'name') {
+                    formData.append('name', item.value);
+                } else if (item.name === 'message') {
+                    formData.append('message', item.value);
+                } else if (item.name === 'form_item7') {
+                    formData.append('attendance', item.value);
+                } else if (item.name === 'form_item8') {
+                    formData.append('withWhom', item.value);
+                } else if (item.name === 'form_item9') {
+                    formData.append('guestOf', item.value);
+                }
+            });
+            fetch(url, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(function() {
+                const form = document.getElementsByClassName('ladi-form');
+                const p = document.getElementById('buttonText');
+                if (form) {
+                    for (let i = 0; i < form.length; i++) {
+                        form[i].reset();
+                    }
+                }
+                if (p) {
+                    p.innerText = 'Cảm ơn nhaaaaaa';
+                }
+            }).catch(function(error) {
+                if (callback) {
+                    callback('{"success":false}', 0, {status: 0, responseText: '{"success":false}'}, url);
+                }
+            });
+            return !0;
+        }
+    } catch(e) {
+        console.error('Error transforming form data:', e);
+    }
+    return data;
+};
 var lightbox_run = function(t, e, i, a, n, o, r, d) {
     var l = document.getElementById(LadiPageScript.runtime.lightbox_screen_id);
     if (!isEmptyLadiPage(l)) {
